@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Strength Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <h1>Password Strength Analyzer</h1>
+
+    <form method="POST">
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required>
+
+        <button type="submit">
+            Analyze Password
+        </button>
+    </form>
+
+    {% if result %}
+
+    <h2>Analysis Results</h2>
+
+    <p><strong>Score:</strong> {{ result.score }}</p>
+
+    <p><strong>Strength:</strong> {{ result.strength }}</p>
+
+    <p><strong>Entropy:</strong> {{ result.entropy }}</p>
+
+    <p><strong>Password Reused:</strong> {{ result.reused }}</p>
+
+    <h3>Suggestions</h3>
+
+    <ul>
+        {% for s in result.suggestions %}
+        <li>{{ s }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Generated Strong Password</h3>
+
+    <p>{{ result.generated }}</p>
+
+    {% endif %}
+
+</body>
+</html>
